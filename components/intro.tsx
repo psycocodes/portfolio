@@ -4,23 +4,25 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const IntroAnimation = () => {
-
   // Config
-  const fontSize = 5 //rem
-  const content = "Hiya."
-  
+  const fontSize = 5; //rem
+  const content = "Hiya.";
+
   const textRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const t1 = gsap.timeline();
 
-    t1.to(circleRef.current, { // Explosion Phase 1
-      duration: 1.2,
-      width: `${fontSize*2.4}rem`,
-      height: `${fontSize*2.4}rem`,
-      ease: "expo.out",
-    })
-      .to(circleRef.current, { // Explosion Phase 2
+    t1.to({}, { duration: 0.4 })
+      .to(circleRef.current, {
+        // Explosion Phase 1
+        duration: 1.2,
+        width: `${fontSize * 2.4}rem`,
+        height: `${fontSize * 2.4}rem`,
+        ease: "expo.out",
+      })
+      .to(circleRef.current, {
+        // Explosion Phase 2
         duration: 0.8,
         width: "200vw",
         height: "200vw",
@@ -28,7 +30,8 @@ const IntroAnimation = () => {
         opacity: 1,
         ease: "power3.inOut",
       })
-      .to(textRef.current, { // Delete Text
+      .to(textRef.current, {
+        // Delete Text
         opacity: 0,
       });
   });
