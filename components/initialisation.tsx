@@ -1,7 +1,4 @@
 "use client"
-import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
 
 const InitialisationAnimation = () => {
   return (
