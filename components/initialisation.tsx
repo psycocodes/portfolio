@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
-import { createRef, useEffect, useRef, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import gsap from "gsap";
 
 const InitialisationAnimation = ({
