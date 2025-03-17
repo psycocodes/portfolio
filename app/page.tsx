@@ -10,7 +10,9 @@ export default function Home() {
       {animationCounter == 1 && (
         <IntroAnimation onComplete={() => setAnimationCounter(2)} />
       )}
-      {animationCounter == 2 && <InitialisationAnimation />}
+      {animationCounter == 2 && (
+        <InitialisationAnimation onComplete={() => {}} />
+      )}
     </>
   );
 }
