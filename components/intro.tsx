@@ -15,7 +15,7 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
 
     const t1 = gsap.timeline({ onComplete: onComplete });
 
-    t1.to({}, { duration: 0.4 }) // Pause Animation
+    t1.to({}, { duration: 0.8 }) // Pause Animation
       .to(circleRef.current, {
         // Explosion Phase 1
         duration: 1.2,

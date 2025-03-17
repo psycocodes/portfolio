@@ -9,7 +9,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-caleb);
+  --font-serif: var(--font-playfair);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -72,6 +73,7 @@ body {
 .link-hover:not(:hover)::before {
   animation: lineDisappear 0.7s ease forwards;
 }
+
 /* Fade In Animation */
 @keyframes fadeIn {
   from {

@@ -1,8 +1,10 @@
 "use client";
-import { createRef, useEffect, useState } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import Navbar from "./ui/navbar";
 
+// TODO: Remember to fix the splash screen bug
 const InitialisationAnimation = ({
   onComplete,
 }: {
@@ -14,6 +16,8 @@ const InitialisationAnimation = ({
       .fill(0)
       .map(() => createRef<HTMLDivElement>())
   );
+  const scrollTextRef = useRef<HTMLDivElement>(null);
+  const mainTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Filtering Null Elements
@@ -44,6 +48,26 @@ const InitialisationAnimation = ({
         },
         position
       );
+    });
+
+    t2.fromTo(
+      mainTextRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5, ease: "power2.out" }, 
+    );
+    t2.fromTo(
+      scrollTextRef.current,
+      { opacity: 0, scale: 0.9 },
+      { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, "<"
+    );
+
+    // Step 2: Subtle bop effect (slight vertical movement)
+    t2.to(scrollTextRef.current, {
+      y: -5, // Move up slightly
+      repeat: -1, // Infinite loop
+      yoyo: true, // Reverse on each iteration
+      duration: 0.6,
+      ease: "sine.inOut",
     });
 
     return () => {
@@ -87,7 +111,20 @@ const InitialisationAnimation = ({
         })}
       </div>
       {/* NavBar */}
-      <Navbar/>
+      <Navbar />
+      {/* Main Content */}
+      <motion.div
+        ref={mainTextRef}
+        className="absolute bg-tranparent text-white text-[6rem] z-20 pointer-events-none top-1/2 -translate-y-1/2 font-light font-serif left-1/2 -translate-x-1/2 w-full flex justify-center flex-col items-center"
+      >
+        The Developer who Designs{" "}
+      </motion.div>
+      <motion.div
+        ref={scrollTextRef}
+        className="text-xl absolute bottom-[7vh] left-1/2 -translate-x-1/2 font-mono"
+      >
+        {"< Scroll Down >"}
+      </motion.div>
     </>
   );
 };
