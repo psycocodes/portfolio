@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const IntroAnimation = () => {
+const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
   // Config
   const fontSize = 5; //rem
   const content = "Hiya.";
@@ -11,7 +11,9 @@ const IntroAnimation = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const t1 = gsap.timeline();
+    if (!textRef.current || !circleRef.current) return; // Check for elements
+
+    const t1 = gsap.timeline({ onComplete: onComplete });
 
     t1.to({}, { duration: 0.4 }) // Pause Animation
       .to(circleRef.current, {
@@ -34,13 +36,17 @@ const IntroAnimation = () => {
         // Delete Text
         opacity: 0,
       });
-  });
+    return () => {
+      t1.kill(); // Clean up Animation
+    };
+  }, []);
 
   return (
-    <div className="relative flex items-center justify-center bg-white text-black h-screen w-screen">
+    <div className="relative flex items-center justify-center bg-white text-black h-screen w-screen overflow-hidden">
       <motion.div
         ref={textRef}
-        initial={{ opacity: 1, fontSize: `${fontSize}rem` }}
+        style={{ fontSize: `${fontSize}rem` }}
+        initial={{ opacity: 1 }}
       >
         {content}
       </motion.div>

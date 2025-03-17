@@ -1,0 +1,12 @@
+"use client"
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
+const InitialisationAnimation = () => {
+  return (
+    <div className="bg-black text-white absolute top-0 text-[10.22786vw] overflow-hidden h-screen w-screen  p-0 m-0">MOHIKSHIT GHORAI</div>
+  )
+}
+
+export default InitialisationAnimation
