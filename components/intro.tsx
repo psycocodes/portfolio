@@ -13,7 +13,7 @@ const IntroAnimation = () => {
   useEffect(() => {
     const t1 = gsap.timeline();
 
-    t1.to({}, { duration: 0.4 })
+    t1.to({}, { duration: 0.4 }) // Pause Animation
       .to(circleRef.current, {
         // Explosion Phase 1
         duration: 1.2,
@@ -40,8 +40,7 @@ const IntroAnimation = () => {
     <div className="relative flex items-center justify-center bg-white text-black h-screen w-screen">
       <motion.div
         ref={textRef}
-        initial={{ opacity: 1 }}
-        className={`text-[${fontSize}rem]`}
+        initial={{ opacity: 1, fontSize: `${fontSize}rem` }}
       >
         {content}
       </motion.div>
