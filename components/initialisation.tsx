@@ -3,8 +3,10 @@ import { createRef, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import Navbar from "./ui/navbar";
+import Image from "next/image";
 
 // TODO: Remember to fix the splash screen bug
+
 const InitialisationAnimation = ({
   onComplete,
 }: {
@@ -53,12 +55,13 @@ const InitialisationAnimation = ({
     t2.fromTo(
       mainTextRef.current,
       { opacity: 0 },
-      { opacity: 1, duration: 0.5, ease: "power2.out" }, 
+      { opacity: 1, duration: 0.5, ease: "power2.out" }
     );
     t2.fromTo(
       scrollTextRef.current,
       { opacity: 0, scale: 0.9 },
-      { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, "<"
+      { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
+      "<"
     );
 
     // Step 2: Subtle bop effect (slight vertical movement)
@@ -121,10 +124,21 @@ const InitialisationAnimation = ({
       </motion.div>
       <motion.div
         ref={scrollTextRef}
-        className="text-xl absolute bottom-[7vh] left-1/2 -translate-x-1/2 font-mono"
+        className="text-xl absolute bottom-[7vh] left-1/2 -translate-x-1/2 font-mono flex"
       >
-        {"< Scroll Down >"}
+        {"< Scroll Down"}
+        <Image
+          src="/images/scrolldown.png"
+          alt=""
+          width={30}
+          height={30}
+          className="aspect-square p-0 m-0 scale-[0.6]"
+        ></Image>
+        {">"}
       </motion.div>
+      {/* <div className="absolute top-0 left-0 h-screen w-screen -z-50">
+        <ThreejsComponent></ThreejsComponent>
+      </div> */}
     </>
   );
 };
