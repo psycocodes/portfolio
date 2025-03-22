@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 
+
 const Navbar = () => {
   const links = [
     { name: "ABOUT", href: "/#about", searchHref: "#about" },
@@ -9,8 +10,11 @@ const Navbar = () => {
     { name: "CONNECT", href: "/#connect", searchHref: "#connect" },
     { name: "RESUME", href: "/#resume", searchHref: "#resume" },
   ];
+
+
+
   return (
-    <div className="fixed left-0 top-0 w-full flex bg-transparent text-l font-extralight py-2 px-5">
+    <div className="fixed left-0 top-0 w-full flex mix-blend-difference bg-transparent text-l font-extralight py-2 px-5">
         <Link href="/" className="w-[40vw] text-white font-regular">
         <div className="expanding-initials">
             <span>M</span><span>OHIKSHIT</span>
@@ -22,7 +26,6 @@ const Navbar = () => {
           <Link
             key={item.href}
             href={item.href}
-            scroll={false}
             className="text-white link-hover"
           >
             {item.name}

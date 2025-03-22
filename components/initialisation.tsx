@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import Navbar from "./ui/navbar";
 import Image from "next/image";
+import { MoveUpRight } from "lucide-react";
 
 // TODO: Remember to fix the splash screen bug
 
@@ -20,6 +21,7 @@ const InitialisationAnimation = ({
   );
   const scrollTextRef = useRef<HTMLDivElement>(null);
   const mainTextRef = useRef<HTMLDivElement>(null);
+  const starRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Filtering Null Elements
@@ -57,13 +59,19 @@ const InitialisationAnimation = ({
       { opacity: 0 },
       { opacity: 1, duration: 0.5, ease: "power2.out" }
     );
+
     t2.fromTo(
       scrollTextRef.current,
       { opacity: 0, scale: 0.9 },
       { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
       "<"
     );
-
+    t2.to(starRef.current, {
+      rotation: 360,
+      duration: 20,
+      repeat: -1,
+      ease: "linear",
+    });
     // Step 2: Subtle bop effect (slight vertical movement)
     t2.to(scrollTextRef.current, {
       y: -5, // Move up slightly
@@ -115,30 +123,60 @@ const InitialisationAnimation = ({
       </div>
       {/* NavBar */}
       <Navbar />
-      {/* Main Content */}
+      {/* Home Main Content */}
       <motion.div
         ref={mainTextRef}
-        className="absolute bg-tranparent text-white text-[6rem] z-20 pointer-events-none top-1/2 -translate-y-1/2 font-light font-serif left-1/2 -translate-x-1/2 w-full flex justify-center flex-col items-center"
+        className="h-full relative  bg-tranparent text-white text-[6rem] z-20 pointer-events-none top-1/2 -translate-y-1/2 font-light font-serif left-1/2 -translate-x-1/2 w-full flex justify-center flex-col items-center"
       >
+        <div ref={starRef} className="absolute -z-50 overflow-hidden">
+          <Image
+            src="/images/greystar.png"
+            alt=""
+            width={400}
+            height={400}
+            className="aspect-square p-0 m-0 rotate-10"
+          />
+        </div>
         The Developer who Designs{" "}
       </motion.div>
-      <motion.div
-        ref={scrollTextRef}
-        className="text-xl absolute bottom-[7vh] left-1/2 -translate-x-1/2 font-mono flex"
-      >
-        {"< Scroll Down"}
-        <Image
-          src="/images/scrolldown.png"
-          alt=""
-          width={30}
-          height={30}
-          className="aspect-square p-0 m-0 scale-[0.6]"
-        ></Image>
-        {">"}
+      <motion.div className="fixed bottom-[7vh] left-1/2 -translate-x-1/2 mix-blend-difference">
+        <motion.div ref={scrollTextRef} className="text-xl font-mono flex">
+          {"< Scroll Down"}
+          <Image
+            src="/images/scrolldown.png"
+            alt=""
+            width={30}
+            height={30}
+            className="aspect-square p-0 m-0 scale-[0.6]"
+          ></Image>
+          {">"}
+        </motion.div>
       </motion.div>
-      {/* <div className="absolute top-0 left-0 h-screen w-screen -z-50">
-        <ThreejsComponent></ThreejsComponent>
-      </div> */}
+      {/* About Me */}
+      <motion.div className="h-full w-full bg-white text-black px-5 py-2 flex flex-col items-center">
+        <div className="text-[7rem] font-sans flex items-center h-fit" id="about">
+          About Me{" "}
+          <div className="border rounded-full h-[7rem] w-[7rem] items-center flex justify-center ml-2">
+            <MoveUpRight className="h-[80%] w-[80%]" />
+          </div>
+        </div>{" "}
+        <div className="flex mx-40 gap-10 h-fit w-[70%] items-center">
+          <div className="h-[50vh] aspect-square relative">
+            <Image
+              src="/images/portrait.png"
+              alt=""
+              className="z-10"
+              fill
+              style = {{objectFit: "contain"}}
+            ></Image>
+            <div className="absolute h-full w-full border-3 -left-5 top-5"></div>
+          </div>
+          <div className="text-[2rem] font-light">
+            <span className="text-[3rem] font-serif"><span className="font-serif">Hi</span>, I am <span className="font-serif">Mohikshit Ghorai.</span></span> <br/>A developer from <span className="font-serif">India</span>.
+            I specialise in branding, graphic design, fullstack development and machine learning.
+          </div>
+        </div>
+      </motion.div>
     </>
   );
 };
