@@ -9,6 +9,7 @@ const WorkTextUI = ({ text }: { text: string }) => {
                 text-black group-hover:text-transparent transition-color
                 group-hover:translate-y-0
                 origin-right 
+                pointer-events-none
                 duration-500 ease-in-out 
                 font-cantry text-[10vh] uppercase font-bold
                "
