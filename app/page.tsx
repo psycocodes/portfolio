@@ -1,6 +1,7 @@
 "use client";
 import IntroAnimation from "@/components/intro";
 import InitialisationAnimation from "@/components/initialisation";
+import WorkComponent from "@/components/work";
 import { useState } from "react";
 
 export default function Home() {
@@ -11,8 +12,12 @@ export default function Home() {
         <IntroAnimation onComplete={() => setAnimationCounter(2)} />
       )}
       {animationCounter == 2 && (
-        <InitialisationAnimation onComplete={() => {}} />
+        <>
+          <InitialisationAnimation onComplete={() => {}} />
+          <WorkComponent onComplete={() => {}}/>
+        </>
       )}
+
     </>
   );
 }
