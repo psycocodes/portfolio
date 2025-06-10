@@ -175,7 +175,7 @@ const InitialisationAnimation = ({
           </div>
           <div className="text-[2.2rem] font-light font-sans">
             <p>
-              <span className="text-lime-500">Hi</span>, I'm{" "}
+              <span className="text-lime-500">Hi</span>, I&apos;m{" "}
                 <span
                   className="font-cantry text-transparent"
                   style={{

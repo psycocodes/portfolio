@@ -39,7 +39,7 @@ const IntroAnimation = ({ onComplete }: { onComplete: () => void }) => {
     return () => {
       t1.kill(); // Clean up Animation
     };
-  }, []);
+  }, [onComplete]);
 
   return (
     <div className="relative flex items-center justify-center bg-white text-black h-screen w-screen overflow-hidden">
