@@ -85,7 +85,7 @@ const InitialisationAnimation = ({
       // Clean up Animation
       t2.kill();
     };
-  }, []);
+  }, [linesRef, onComplete]);
 
   return (
     <>
