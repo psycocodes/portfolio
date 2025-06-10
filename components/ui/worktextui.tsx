@@ -11,7 +11,7 @@ const WorkTextUI = ({ text }: { text: string }) => {
                 origin-right 
                 pointer-events-none
                 duration-500 ease-in-out 
-                font-cantry text-[10vh] uppercase font-bold
+                font-cantry text-[10vh] max-text-[10vh] uppercase font-bold text-right
                "
         style={{
           WebkitTextStroke: "2px rgba(0, 0, 0, 0.5)",

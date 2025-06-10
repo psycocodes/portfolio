@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${Caleb.variable} ${playfair.variable} h-screen w-screen antialiased`}
+        className={`${geistSans.variable} ${Caleb.variable} ${playfair.variable} h-screen bg-white`}
       >
         {children}
       </body>

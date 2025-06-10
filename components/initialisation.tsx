@@ -104,7 +104,7 @@ const InitialisationAnimation = ({
           display: "grid",
           gridTemplateColumns: `repeat(${lineCount}, minmax(0, 1fr))`,
         }}
-        className="h-screen w-screen bg-black overflow-hidden absolute top-0 z-0"
+        className="h-screen w-full bg-black overflow-hidden absolute top-0 z-0"
       >
         {[...Array(lineCount)].map((_, i) => {
           if (i > 0 && i < lineCount) {
