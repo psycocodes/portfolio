@@ -28,6 +28,17 @@
   }
 }
 
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -127,3 +138,4 @@ body {
 .expanding-initials:hover span:nth-child(4) {
   transition-delay: 0.3s;
 }
+

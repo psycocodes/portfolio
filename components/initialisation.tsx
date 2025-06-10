@@ -154,26 +154,42 @@ const InitialisationAnimation = ({
       </motion.div>
       {/* About Me */}
       <motion.div className="h-full w-full bg-white text-black px-5 py-2 flex flex-col items-center">
-        <div className="text-[7rem] font-sans flex items-center h-fit" id="about">
+        <div
+          className="text-[7rem] font-sans flex items-center h-fit"
+          id="about"
+        >
           About Me{" "}
           <div className="border rounded-full h-[7rem] w-[7rem] items-center flex justify-center ml-2">
             <MoveUpRight className="h-[80%] w-[80%]" />
           </div>
-        </div>{" "}
+        </div>
         <div className="flex mx-40 gap-10 h-fit w-[70%] items-center">
           <div className="h-[50vh] aspect-square relative">
             <Image
               src="/images/portrait.png"
               alt=""
-              className="z-10"
+              className="z-10 rounded-full hover:rotate-z-[10deg] hover:rotate-y-[10deg] transition-transform duration-300 ease-in-out"
               fill
-              style = {{objectFit: "contain"}}
-            ></Image>
-            <div className="absolute h-full w-full border-3 -left-5 top-5"></div>
+              style={{ objectFit: "contain" }}
+            />
           </div>
-          <div className="text-[2rem] font-light">
-            <span className="text-[3rem] font-serif"><span className="font-serif">Hi</span>, I am <span className="font-serif">Mohikshit Ghorai.</span></span> <br/>A developer from <span className="font-serif">India</span>.
-            I specialise in branding, graphic design, fullstack development and machine learning.
+          <div className="text-[2.2rem] font-light font-sans">
+            <p>
+              <span className="text-lime-500">Hi</span>, I'm{" "}
+                <span
+                  className="font-cantry text-transparent"
+                  style={{
+                    WebkitTextStroke: "1.5px #84cc16",
+                  }}
+                >
+                  Mohikshit Ghorai
+                </span>
+            </p>
+            <p className="text-[1.5rem] leading-[2.5rem] mt-2">
+              A passionate developer with a flair for design. I love creating
+              intuitive and engaging digital experiences that blend
+              functionality with aesthetics.
+            </p>
           </div>
         </div>
       </motion.div>
