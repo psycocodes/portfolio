@@ -13,8 +13,8 @@ export default function Home() {
       )}
       {animationCounter == 2 && (
         <>
-          <InitialisationAnimation onComplete={() => {}} />
-          <WorkComponent onComplete={() => {}}/>
+          <InitialisationAnimation onComplete={() => {setAnimationCounter(3)}} />
+          <WorkComponent/>
         </>
       )}
 

@@ -2,7 +2,7 @@
 import React from "react";
 import WorkTextUI from "./ui/worktextui";
 
-const WorkComponent = ({ onComplete }: { onComplete: () => void }) => {
+const WorkComponent = () => {
   const workData = ["Web Development", "Game Development", "Graphic Design","3D Modelling", "UI Design"];
   return (
     <>
