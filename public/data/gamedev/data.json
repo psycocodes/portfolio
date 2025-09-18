@@ -1,0 +1,113 @@
+[
+  {
+    "type": "storytext",
+    "text": "GameDev in this Economy, pretty rare",
+    "width": 4,
+    "height": 2
+  },
+  {
+    "type": "storytext",
+    "text": "Started my journey with a simple number guessing game in 2018, which I later integrated with pygame in 2020",
+    "width": 4,
+    "height": 2
+  },
+  {
+    "type": "project",
+    "title": "Numberzo",
+    "width": 3,
+    "height": 2,
+    "text": "Number Guessing Game with only if and else statements.",
+    "data": {
+      "imageData": {
+        "imagePath": "https://raw.githubusercontent.com/psycocodes/portfolio-data/main/gamedev/images/numberzo.png",
+        "localPath": "data/gamedev/images/numberzo.png",
+        "fallbackPath": "data/gamedev/images/fallback.png"
+      },
+      "links": {
+        "download": "https://github.com/psycocodes/numberzo-pygame/releases/download/v1.0/Numberzo.exe",
+        "github": "https://github.com/psycocodes/numberzo-pygame",
+        "itch": "https://psycocodes.itch.io/numberzo"
+      }
+    }
+  },
+  {
+    "type": "storytext",
+    "text": "Learned AI, so tried making a Sudoku Solver using Backtracking algorithm in 2022",
+    "width": 3,
+    "height": 2
+  },
+  {
+    "type": "project",
+    "title": "Sudoku Solver",
+    "width": 3,
+    "height": 2,
+    "text": "A Sudoku solver built using Backtracking algorithm.",
+    "data": {
+      "imageData": {
+        "imagePath": "https://raw.githubusercontent.com/psycocodes/portfolio-data/main/gamedev/images/sudoku_solver.png",
+        "localPath": "data/gamedev/images/fallback.png",
+        "fallbackPath": "data/gamedev/images/fallback.png"
+      },
+      "links": {
+        "download": "https://github.com/psycocodes/sudoku-pygame/releases/download/v1.0/Sudoku.exe",
+        "github": "https://github.com/psycocodes/sudoku_solver",
+        "itch": "https://psycocodes.itch.io/sudoku_solver"
+      }
+    }
+  },
+  {
+    "type": "storytext",
+    "text": "After that, I switched up and learned Minimax Algorithm to make the Checkers AI in 2023",
+    "width": 3,
+    "height": 2
+  },
+  {
+    "type": "project",
+    "title": "Checkers AI",
+    "width": 3,
+    "height": 2,
+    "text": "One of my best games, Checkers AI. A strategic two-player game with an AI opponent.",
+    "data": {
+      "imageData": {
+        "imagePath": "https://raw.githubusercontent.com/psycocodes/portfolio-data/main/gamedev/images/checkers.png",
+        "localPath": "data/gamedev/images/checkers.png",
+        "fallbackPath": "data/gamedev/images/fallback.png"
+      },
+      "links": {
+        "download": "https://github.com/psycocodes/checkers-pygame/releases/download/v1.0/Checkers.exe",
+        "github": "https://www.github.com/psycocodes/checkers-pygame",
+        "itch": "https://psycocodes.itch.io/checkers"
+      }
+    }
+  },
+  {
+    "type": "storytext",
+    "text": "Now in the present with my latest and most popular game yet deadzone, made with constant 33 hours of coding in 2025",
+    "width": 3,
+    "height": 2
+  },
+  {
+    "type": "project",
+    "title": "deadzone",
+    "width": 3,
+    "height": 2,
+    "text": "My latest project: Deadzone. A fast-paced alien shooter with unique AI and online leaderboards.",
+    "data": {
+      "imageData": {
+        "imagePath": "https://raw.githubusercontent.com/psycocodes/portfolio-data/main/gamedev/images/deadzone.png",
+        "localPath": "data/gamedev/images/deadzone.png",
+        "fallbackPath": "data/gamedev/images/fallback.png"
+      },
+      "links": {
+        "download": "https://github.com/psycocodes/deadzone/releases/download/v1.0/deadzone.zip",
+        "itch": "https://psycocodes.itch.io/deadzone"
+      }
+    }
+  },
+  {
+    "type": "storytext",
+    "text": "Thanks for coming till the end, keep making games and keep playing :D",
+    "width": 3,
+    "height": 2
+  }
+]

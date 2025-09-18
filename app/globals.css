@@ -12,6 +12,34 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'CSCalebMono';
+  src: url('/fonts/CSCalebMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RetroSpace';
+  src: url('/fonts/RETRO_SPACE.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RetroSpaceInv';
+  src: url('/fonts/RETRO_SPACE_INV.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ByteBounce";
+  src: url('/fonts/ByteBounce.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -139,3 +167,27 @@ body {
   transition-delay: 0.3s;
 }
 
+
+#game-container {
+  background-color: #000000;
+  transition: none !important;
+}
+
+#game-container canvas {
+  display: block;
+  image-rendering: crisp-edges;
+}
+
+#game-container {
+  /* ... your existing styles ... */
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Specifically target the canvas element */
+#game-container canvas {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
