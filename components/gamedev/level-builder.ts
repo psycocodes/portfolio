@@ -54,9 +54,9 @@ export class LevelBuilder {
       })
       .setOrigin(0.5)
       .setDepth(1)
-      .setAlpha(0); // Hide initially
+      .setAlpha(0); 
 
-    // Store info for typewriter trigger
+
     this.typewriterTriggers.push({
       x: screenX,
       width: screenWidth,
@@ -73,8 +73,6 @@ export class LevelBuilder {
   }
 
   private setupTypewriterUpdate(): void {
-    // We need to handle this in the main scene's update method
-    // This will be called from the scene's update method
   }
 
   updateTypewriterTriggers(playerX: number): void {
@@ -108,13 +106,11 @@ export class LevelBuilder {
     screenHeight: number,
     imageKey: string
   ): void {
-    // Create billboard background
     this.scene.add
       .image(screenX + screenWidth / 2, screenY - screenHeight / 2, "billboard")
       .setDisplaySize(screenWidth, screenHeight)
       .setDepth(0);
 
-    // Try to use the project-specific image, fall back if needed
     let textureKey = imageKey;
     if (!this.scene.textures.exists(imageKey)) {
       const fallbackKey = `${imageKey}_fallback`;
@@ -137,7 +133,7 @@ export class LevelBuilder {
     links: { [key: string]: string }
   ): Portal[] {
     const portals: Portal[] = [];
-    const portalY = groundHeight - 32; // Exactly at ground level
+    const portalY = groundHeight - 32; 
     const portalSpacing = 200;
     const linkEntries = Object.entries(links);
     const totalPortalWidth = (linkEntries.length - 1) * portalSpacing;
@@ -151,7 +147,6 @@ export class LevelBuilder {
         links: { [linkType]: url },
       });
 
-      // Add link type label above portal
       this.scene.add
         .text(portalX, portalY - 80, linkType.toUpperCase(), {
           fontFamily: "RetroSpaceInv",
@@ -177,14 +172,14 @@ export class LevelBuilder {
   ): Portal[] {
     const portals: Portal[] = [];
 
-    // Add header texts
+
     this.scene.add
       .text(
         socialStartX + socialSpacing * 1.5,
         socialY - 250,
         "Connect with me,",
         {
-          fontFamily: "ByteBounce, RetroSpaceInv",
+          fontFamily: "ByteBounce",
           fontSize: "64px",
           color: "#90e5ffff",
           align: "center",
@@ -201,7 +196,7 @@ export class LevelBuilder {
         socialY - 200,
         "Open to Feedback :D",
         {
-          fontFamily: "ByteBounce, RetroSpaceInv",
+          fontFamily: "ByteBounce",
           fontSize: "48px",
           color: "#90e5ffff",
           align: "center",
@@ -212,7 +207,7 @@ export class LevelBuilder {
       .setOrigin(0.5)
       .setDepth(3);
 
-    // Social media data
+
     const socialLinks = [
       {
         name: "LinkedIn",
@@ -240,9 +235,8 @@ export class LevelBuilder {
       },
     ];
 
-    // Create social media portals and icons
     socialLinks.forEach((social, index) => {
-      // Create portal
+
       const portal = this.portalManager.createPortal({
         x: social.x,
         y: socialY,
@@ -250,7 +244,7 @@ export class LevelBuilder {
       });
       portals.push(portal);
 
-      // Add social platform label
+
       this.scene.add
         .text(social.x, socialY - 50, social.name.toUpperCase(), {
           fontFamily: "ByteBounce, RetroSpaceInv",
@@ -263,19 +257,19 @@ export class LevelBuilder {
         .setOrigin(0.5)
         .setDepth(3);
 
-      // Add social media icon with animation
+
       const iconBaseY = socialY - 120;
       const socialIcon = this.scene.add
         .image(social.x, iconBaseY, social.icon)
         .setDisplaySize(64, 64)
         .setDepth(2);
 
-      // Apply gray tint to placeholder icons
+
       if (social.icon === "vercel") {
         socialIcon.setTint(0x888888);
       }
 
-      // Add floating animation
+
       this.scene.tweens.add({
         targets: socialIcon,
         y: iconBaseY - 10,
@@ -300,7 +294,7 @@ export class LevelBuilder {
   ): Portal[] {
     const portals: Portal[] = [];
 
-    // Create skip-to-end portal
+
     const skipPortal = this.portalManager.createPortal({
       x: skipPortalX,
       y: skipPortalY,
@@ -309,7 +303,7 @@ export class LevelBuilder {
     });
     portals.push(skipPortal);
 
-    // Add label for skip portal
+
     this.scene.add
       .text(skipPortalX, skipPortalY - 80, "SKIP TO END", {
         fontFamily: "RetroSpaceInv",
@@ -322,7 +316,7 @@ export class LevelBuilder {
       .setOrigin(0.5)
       .setDepth(3);
 
-    // Create back-to-beginning portal
+    
     const backPortal = this.portalManager.createPortal({
       x: endPortalX,
       y: endPortalY,
@@ -331,7 +325,7 @@ export class LevelBuilder {
     });
     portals.push(backPortal);
 
-    // Add label for back portal
+
     this.scene.add
       .text(endPortalX, endPortalY - 80, "BACK TO START", {
         fontFamily: "RetroSpaceInv",

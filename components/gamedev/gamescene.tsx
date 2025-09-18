@@ -16,7 +16,7 @@ import {
 import WebFont from "webfontloader";
 import { loadGameDevContent, GameDevData } from "@/utils/gamedevData";
 import { CRTPostFXPipeline } from "./crt-pipeline";
-import { PortalManager, Portal } from "./portal-manager";
+import { PortalManager } from "./portal-manager";
 import { AnimationManager } from "./animation-manager";
 import { BackgroundManager } from "./background-manager";
 import { LevelBuilder } from "./level-builder";
@@ -263,43 +263,6 @@ export class GameScene extends Scene {
       }
     }
   }
-  private createTypewriterText = (
-    screenX: number,
-    screenY: number,
-    screenWidth: number,
-    screenHeight: number,
-    text: string,
-    options?: {
-      fontSize?: string;
-      color?: string;
-      fontFamily?: string;
-      stroke?: string;
-      strokeThickness?: number;
-    }
-  ) => {
-    this.levelBuilder.createTypewriterText(
-      screenX,
-      screenY,
-      screenWidth,
-      screenHeight,
-      text,
-      options
-    );
-  };
-
-  private createPortal = (
-    x: number,
-    y: number,
-    links: { [key: string]: string },
-    teleportTarget?: number
-  ): Portal => {
-    return this.portalManager.createPortal({
-      x,
-      y,
-      links,
-      teleportTarget,
-    });
-  };
 
   private createLevel(_startingScreenX: number, _startingPortalX: number) {
     const startingScreenX = _startingScreenX ?? 2500;
@@ -317,150 +280,28 @@ export class GameScene extends Scene {
         ? startingScreenX + lastProjectIndex * screenSpacing
         : startingScreenX + (levelData.length - 1) * screenSpacing;
 
-    this.createPortal(
-      teleportPortalX,
-      teleportPortalY,
-      { teleport: "Skip to Latest Game" },
-      lastProjectX
-    );
-
-    this.add
-      .text(teleportPortalX, teleportPortalY - 80, "SKIP TO END", {
-        fontFamily: "RetroSpaceInv",
-        fontSize: "16px",
-        color: "#ff9900",
-        align: "center",
-        stroke: "#000",
-        strokeThickness: 2,
-      })
-      .setOrigin(0.5)
-      .setDepth(3);
-
     const endPortalX = startingScreenX + levelData.length * screenSpacing;
     const endPortalY = GAME_CONFIG.GROUND_HEIGHT - 32;
     const beginningX = 500;
+
+    this.levelBuilder.createTeleportPortals(
+      teleportPortalX,
+      teleportPortalY,
+      endPortalX,
+      endPortalY,
+      lastProjectX,
+      beginningX
+    );
 
     const socialStartX = endPortalX + 300;
     const socialY = GAME_CONFIG.GROUND_HEIGHT - 32;
     const socialSpacing = 200;
 
-    this.add
-      .text(
-        socialStartX + socialSpacing * 1.5,
-        socialY - 250,
-        "Connect with me,",
-        {
-          fontFamily: "ByteBounce, RetroSpaceInv",
-          fontSize: "64px",
-          color: "#90e5ffff",
-          align: "center",
-          stroke: "#000",
-          strokeThickness: 2,
-        }
-      )
-      .setOrigin(0.5)
-      .setDepth(3);
-
-    this.add
-      .text(
-        socialStartX + socialSpacing * 1.5,
-        socialY - 200,
-        "Open to Feedback :D",
-        {
-          fontFamily: "ByteBounce, RetroSpaceInv",
-          fontSize: "48px",
-          color: "#90e5ffff",
-          align: "center",
-          stroke: "#000",
-          strokeThickness: 2,
-        }
-      )
-      .setOrigin(0.5)
-      .setDepth(3);
-
-    const socialLinks = [
-      {
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/mohikshitghorai/",
-        x: socialStartX,
-        icon: "linkedin_icon",
-      },
-      {
-        name: "GitHub",
-        url: "https://github.com/psycocodes",
-        x: socialStartX + socialSpacing,
-        icon: "github_icon",
-      },
-      {
-        name: "Itch.io",
-        url: "https://psycocodes.itch.io/",
-        x: socialStartX + socialSpacing * 2,
-        icon: "itch_icon",
-      },
-      {
-        name: "Twitter",
-        url: "https://twitter.com/mohikshitghorai",
-        x: socialStartX + socialSpacing * 3,
-        icon: "twitter_icon",
-      },
-    ];
-
-    socialLinks.forEach((social, index) => {
-      this.createPortal(social.x, socialY, {
-        [social.name.toLowerCase()]: social.url,
-      });
-
-      this.add
-        .text(social.x, socialY - 50, social.name.toUpperCase(), {
-          fontFamily: "RetroSpaceInv",
-          fontSize: "16px",
-          color: "#ffffff",
-          align: "center",
-          stroke: "#000",
-          strokeThickness: 1,
-        })
-        .setOrigin(0.5)
-        .setDepth(3);
-
-      const iconBaseY = socialY - 120;
-      const socialIcon = this.add
-        .image(social.x, iconBaseY, social.icon)
-        .setDisplaySize(64, 64)
-        .setDepth(2);
-
-      if (social.icon === "vercel") {
-        socialIcon.setTint(0x888888);
-      }
-
-      this.tweens.add({
-        targets: socialIcon,
-        y: iconBaseY - 10,
-        duration: 1000,
-        yoyo: true,
-        repeat: -1,
-        ease: "Sine.easeInOut",
-        delay: index * 200,
-      });
-    });
-
-    this.createPortal(
-      endPortalX,
-      endPortalY,
-      { teleport: "Back to Beginning" },
-      beginningX
+    this.levelBuilder.createSocialMediaSection(
+      socialStartX,
+      socialY,
+      socialSpacing
     );
-
-    this.add
-      .text(endPortalX, endPortalY - 80, "BACK TO START", {
-        fontFamily: "RetroSpaceInv",
-        fontSize: "16px",
-        color: "#ff9900",
-        align: "center",
-        stroke: "#000",
-        strokeThickness: 2,
-      })
-      .setOrigin(0.5)
-      .setDepth(3);
 
     levelData.forEach((item, i) => {
       if (item.type === "storytext") {
@@ -469,7 +310,7 @@ export class GameScene extends Scene {
         const screenWidth = (item.width ?? 3) * 128;
         const screenHeight = (item.height ?? 2) * 128;
 
-        this.createTypewriterText(
+        this.levelBuilder.createTypewriterText(
           screenX,
           screenY,
           screenWidth,
@@ -482,60 +323,23 @@ export class GameScene extends Scene {
         const screenY = startingScreenY;
         const screenWidth = (item.width ?? 3) * 128;
         const screenHeight = (item.height ?? 2) * 128;
-
-        this.add
-          .image(
-            screenX + screenWidth / 2,
-            screenY - screenHeight / 2,
-            "billboard"
-          )
-          .setDisplaySize(screenWidth, screenHeight)
-          .setDepth(0);
-
         const imageKey = `project_${i}`;
-        const fallbackKey = `${imageKey}_fallback`;
 
-        let textureKey = imageKey;
-        if (!this.textures.exists(imageKey)) {
-          textureKey = this.textures.exists(fallbackKey)
-            ? fallbackKey
-            : "billboard";
-        }
-
-        this.add
-          .sprite(
-            screenX + screenWidth / 2,
-            screenY - screenHeight / 2,
-            textureKey
-          )
-          .setDisplaySize(screenWidth * 0.95, screenHeight * 0.95)
-          .setDepth(0);
+        this.levelBuilder.createProjectBillboard(
+          screenX,
+          screenY,
+          screenWidth,
+          screenHeight,
+          imageKey
+        );
 
         if (item.data?.links) {
-          const portalY = GAME_CONFIG.GROUND_HEIGHT - 32;
-          const portalSpacing = 200;
-          const linkEntries = Object.entries(item.data.links);
-          const totalPortalWidth = (linkEntries.length - 1) * portalSpacing;
-          const startX = screenX + screenWidth / 2 - totalPortalWidth / 2;
-
-          linkEntries.forEach(([linkType, url], portalIndex) => {
-            const portalX = startX + portalIndex * portalSpacing;
-            this.createPortal(portalX, portalY, {
-              [linkType]: url,
-            });
-
-            this.add
-              .text(portalX, portalY - 80, linkType.toUpperCase(), {
-                fontFamily: "RetroSpaceInv",
-                fontSize: "18px",
-                color: "#00ffff",
-                align: "center",
-                stroke: "#000",
-                strokeThickness: 2,
-              })
-              .setOrigin(0.5)
-              .setDepth(3);
-          });
+          this.levelBuilder.createProjectPortals(
+            screenX,
+            screenWidth,
+            GAME_CONFIG.GROUND_HEIGHT,
+            item.data.links
+          );
         }
       }
     });
