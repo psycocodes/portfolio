@@ -5,6 +5,8 @@ const globalAudioState = {
   audioContextResumed: false,
   listenersAdded: false,
   visibilityListenerAdded: false,
+  teleportAudioContext: null as AudioContext | null,
+  teleportAudioBuffer: null as AudioBuffer | null,
 };
 
 export class AudioManager {
@@ -78,6 +80,8 @@ export class AudioManager {
             volume: this.soundVolume,
             loop: false,
           });
+
+          this.prepareTeleportAudioBuffer();
         }
 
         const walkingCache = this.scene.cache.audio.get("walking_sound");
@@ -125,14 +129,69 @@ export class AudioManager {
   }
 
   playTeleportSound(): void {
-    if (this.teleportSound && this.soundEnabled) {
+    if (this.soundEnabled) {
       try {
-        if (!this.teleportSound.isPlaying) {
+        if (
+          globalAudioState.teleportAudioContext &&
+          globalAudioState.teleportAudioBuffer
+        ) {
+          this.playTeleportSoundDirect();
+        } else if (this.teleportSound && !this.teleportSound.isPlaying) {
           this.teleportSound.play();
         }
       } catch (error) {
         console.warn("Failed to play teleport sound:", error);
       }
+    }
+  }
+
+  private playTeleportSoundDirect(): void {
+    if (
+      !globalAudioState.teleportAudioContext ||
+      !globalAudioState.teleportAudioBuffer
+    ) {
+      return;
+    }
+
+    try {
+      const source = globalAudioState.teleportAudioContext.createBufferSource();
+      const gainNode = globalAudioState.teleportAudioContext.createGain();
+
+      source.buffer = globalAudioState.teleportAudioBuffer;
+      gainNode.gain.value = this.soundVolume;
+
+      source.connect(gainNode);
+      gainNode.connect(globalAudioState.teleportAudioContext.destination);
+
+      source.start(0);
+    } catch (error) {
+      console.warn("Failed to play direct teleport sound:", error);
+    }
+  }
+
+  private prepareTeleportAudioBuffer(): void {
+    if (globalAudioState.teleportAudioBuffer) {
+      return;
+    }
+
+    try {
+      globalAudioState.teleportAudioContext = new (window.AudioContext ||
+        (window as any).webkitAudioContext)();
+
+      const teleportCache = this.scene.cache.audio.get("teleport_sound");
+      if (teleportCache && teleportCache.data) {
+        globalAudioState.teleportAudioContext.decodeAudioData(
+          teleportCache.data.slice(0),
+          (buffer) => {
+            globalAudioState.teleportAudioBuffer = buffer;
+          },
+          (error) => {
+            console.warn("Failed to decode teleport audio data:", error);
+          }
+        );
+      }
+    } catch (error) {
+      console.warn("Failed to prepare teleport audio buffer:", error);
     }
   }
 
