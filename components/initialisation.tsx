@@ -170,7 +170,7 @@ const InitialisationAnimation = ({
               alt=""
               className="z-10 rounded-full hover:rotate-z-[10deg] hover:rotate-y-[10deg] transition-transform duration-300 ease-in-out"
               fill
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "cover" }}
             />
           </div>
           <div className="text-[2.2rem] font-light font-sans">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Viaoda_Libre } from "next/font/google";
+import { Geist, Viaoda_Libre, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -8,6 +8,11 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
 
 const Caleb = localFont({
   src: [
@@ -39,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${Caleb.variable} ${playfair.variable} h-screen bg-white`}
+        className={`${geistSans.variable} ${inter.variable} ${Caleb.variable} ${playfair.variable} h-screen bg-neutral-950 text-neutral-200`}
       >
         {children}
       </body>

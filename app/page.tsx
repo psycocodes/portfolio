@@ -3,6 +3,7 @@ import IntroAnimation from "@/components/intro";
 import InitialisationAnimation from "@/components/initialisation";
 import WorkComponent from "@/components/work";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [animationCounter, setAnimationCounter] = useState(1);
@@ -17,7 +18,6 @@ export default function Home() {
           <WorkComponent/>
         </>
       )}
-
     </>
   );
 }

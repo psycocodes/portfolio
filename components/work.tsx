@@ -34,6 +34,18 @@ const WorkComponent = () => {
                 </Link>
               );
             }
+            // Make UI Design clickable and link to uiux page
+            if (work === "UI Design") {
+              return (
+                <Link
+                  key={idx}
+                  href="/uiux"
+                  className="block cursor-pointer"
+                >
+                  <WorkTextUI text={work} isClickable={true} />
+                </Link>
+              );
+            }
             return <WorkTextUI key={idx} text={work} isClickable={false} />;
           })}
         </div>
