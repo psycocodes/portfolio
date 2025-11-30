@@ -8,7 +8,7 @@ const Navbar = () => {
     { name: "ABOUT", href: "/#about", searchHref: "#about" },
     { name: "WORK", href: "/#work", searchHref: "#work" },
     { name: "CONNECT", href: "/#connect", searchHref: "#connect" },
-    { name: "RESUME", href: "/#resume", searchHref: "#resume" },
+    { name: "RESUME", href: "https://bit.ly/mohikshitghorai-resume-uiux", searchHref: "#resume" },
   ];
 
 

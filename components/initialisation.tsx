@@ -166,7 +166,7 @@ const InitialisationAnimation = ({
         <div className="flex mx-40 gap-10 h-fit w-[70%] items-center">
           <div className="h-[50vh] aspect-square relative">
             <Image
-              src="/images/portrait.png"
+              src="/images/pfp-informal.jpg"
               alt=""
               className="z-10 rounded-full hover:rotate-z-[10deg] hover:rotate-y-[10deg] transition-transform duration-300 ease-in-out"
               fill
