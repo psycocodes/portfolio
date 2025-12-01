@@ -1,6 +1,6 @@
 {/* Horizontal Section Wrapper */}
 const HorizontalScroller = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-6 overflow-x-auto snap-x snap-mandatory">
+  <div className="mt-6 overflow-x-auto snap-x snap-mandatory custom-scrollbar pb-4">
     <div className="flex gap-4 w-max px-1">{children}</div>
   </div>
 );
